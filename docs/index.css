@@ -14,6 +14,7 @@
     padding: 10px;
     margin: 2px;
     cursor: pointer;
+    width: 150px;
 }
 
 .card img {
@@ -21,5 +22,5 @@
 }
 
 .card div {
-    font-size: 20px;
+    font-size: 18px;
 }
