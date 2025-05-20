@@ -1,5 +1,15 @@
 function display() {
     let body = document.querySelector("body");
+    let saved = window.localStorage.saved;
+    if( saved ) {
+        try {
+            saved = JSON.parse(window.localStorage.saved);
+        }
+        catch(err) {
+            saved = {};
+        }
+    }
+    else saved = {};
     fetch("./list.json")
 
         .then(response => response.json())
@@ -24,12 +34,16 @@ function display() {
                     if( img.getAttribute("data-src") ) {
                         img.setAttribute("src", img.getAttribute("data-src"));
                         img.removeAttribute("data-src");
+                        delete saved[pokemon];
                     }
                     else {
                         img.setAttribute("data-src", img.getAttribute("src"));
                         img.setAttribute("src","./images/pokeball.jpg");
+                        saved[pokemon] = true;
                     }
+                    window.localStorage.saved = JSON.stringify(saved);
                 }
+                if( saved[pokemon] ) card.click();
                 pokemonDiv.appendChild(card);
             }
             body.appendChild(pokemonDiv);
