@@ -79,7 +79,7 @@ async function run() {
     for( let pokemon of POKEMON ) {
         if( !pokemon ) continue;
         let filename = pokemon.toLowerCase() + ".png";
-        if( fs.existsSync("docs/images/"+filename) ) continue;
+        if( fs.existsSync("docs/images/pokemon/"+filename) ) continue;
         let url = BASE + pokemon + SUFFIX;
         console.log(url);
         await page.goto(url, {
@@ -92,12 +92,12 @@ async function run() {
             return document.querySelector(".mw-file-description img").getAttribute("src");
         } );
         console.log(file);
-        await downloadImage(file, "docs/images/"+filename);
+        await downloadImage(file, "docs/images/pokemon/"+filename);
         //pokemonList.push(pokemon);
         await page.waitForTimeout(1000);
     }
 
-    fs.writeFileSync("docs/list.json", JSON.stringify(POKEMON, null, 2));
+    fs.writeFileSync("docs/pokemon.json", JSON.stringify(POKEMON, null, 2));
 
     browser.close();
 }

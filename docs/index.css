@@ -5,6 +5,9 @@
 
 .card-holder {
     text-align: center;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
 }
 
 .card {
@@ -19,8 +22,28 @@
 
 .card img {
     width: 120px;
+    height: 120px;
+    object-fit: contain;
 }
 
 .card div {
     font-size: 18px;
+}
+
+ul {
+    display: inline-block;
+    text-align: left;
+    font-size: 30px;
+    margin: 0;
+    padding: 0;
+    list-style-type: none;
+}
+
+nav ul {
+    font-size: 16px;
+}
+
+nav li {
+    display: inline-block;
+    padding: 10px;
 }

@@ -1,29 +1,40 @@
-function display() {
+function display( mode ) {
     let body = document.querySelector("body");
-    let saved = window.localStorage.saved;
+    let key = "pokemonSaved";
+    let list = "pokemon.json";
+    if( mode === "mario" ) {
+        key = "marioSaved";
+        list = "mario.json";
+    }
+    let saved = window.localStorage[key];
     if( saved ) {
         try {
-            saved = JSON.parse(window.localStorage.saved);
+            saved = JSON.parse(window.localStorage[key]);
         }
         catch(err) {
             saved = {};
         }
     }
     else saved = {};
-    fetch("./list.json")
+    fetch(list)
 
         .then(response => response.json())
         .then(json => {
             let pokemonDiv = document.createElement("div");
             pokemonDiv.classList.add("card-holder");
-            json.push("Alolan Exeggutor");
-            json.push("Frost Rotom");
+            if( mode === "pokemon" ) {
+                json.push("Alolan Exeggutor");
+                json.push("Frost Rotom");
+            }
+            else if( mode === "mario" ) {
+                json.push("Chef Bro");
+            }
             json = json.sort();
             for( let pokemon of json ) {
                 let card = document.createElement("div");
                 card.classList.add("card");
                 let img = document.createElement("img");
-                img.setAttribute("src", "./images/" + pokemon.toLowerCase() + ".png");
+                img.setAttribute("src", "./images/" + mode + "/" + pokemon.toLowerCase() + ".png");
                 let text = document.createElement("div");
                 text.innerText = pokemon;
 
@@ -38,10 +49,10 @@ function display() {
                     }
                     else {
                         img.setAttribute("data-src", img.getAttribute("src"));
-                        img.setAttribute("src","./images/pokeball.jpg");
+                        img.setAttribute("src","./images/" + mode + "/default.jpg");
                         saved[pokemon] = true;
                     }
-                    window.localStorage.saved = JSON.stringify(saved);
+                    window.localStorage[key] = JSON.stringify(saved);
                 }
                 if( saved[pokemon] ) card.click();
                 pokemonDiv.appendChild(card);
@@ -57,5 +68,3 @@ function display() {
             }
         });
 }
-
-display();
