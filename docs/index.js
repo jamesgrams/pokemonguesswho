@@ -5,6 +5,10 @@ function display( mode ) {
     if( mode === "mario" ) {
         key = "marioSaved";
         list = "mario.json";
+    } 
+    if( mode === "sonic" ) {
+        key = "sonicSaved";
+        list = "sonic.json";
     }
     let saved = window.localStorage[key];
     if( saved ) {
