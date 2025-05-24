@@ -10,6 +10,10 @@ function display( mode ) {
         key = "sonicSaved";
         list = "sonic.json";
     }
+    if( mode === "mickey" ) {
+        key = "mickeySaved";
+        list = "mickey.json";
+    }
     let saved = window.localStorage[key];
     if( saved ) {
         try {
