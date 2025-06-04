@@ -18,6 +18,10 @@ function display( mode ) {
         key = "wildkrattsSaved";
         list = "wildkratts.json";
     }
+    if( mode === "may" ) {
+        key = "maySaved";
+        list = "may.json";
+    }
     let saved = window.localStorage[key];
     if( saved ) {
         try {
