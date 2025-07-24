@@ -22,6 +22,10 @@ function display( mode ) {
         key = "maySaved";
         list = "may.json";
     }
+    if( mode === "noddy" ) {
+        key = "noddySaved";
+        list = "noddy.json";
+    }
     let saved = window.localStorage[key];
     if( saved ) {
         try {
