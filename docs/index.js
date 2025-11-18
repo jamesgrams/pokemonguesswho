@@ -26,6 +26,10 @@ function display( mode ) {
         key = "noddySaved";
         list = "noddy.json";
     }
+    if( mode === "nfl" ) {
+        key = "nflSaved";
+        list = "nfl.json";
+    }
     let saved = window.localStorage[key];
     if( saved ) {
         try {
